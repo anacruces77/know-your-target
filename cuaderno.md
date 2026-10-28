@@ -7,3 +7,9 @@ Objetivo: programa Snapchat en HackerOne (lectura de la política, sin tocar el 
 https://hackerone.com/snapchat/policy_scopes -> 46 activos en el alcance; última actualización del alcance 18/12/2024
 
 2026-10-28 11:00 - entorno: repositorio clonado en Kali
+
+
+2026-10-28 11:50
+Objetivo: programa Snapchat en HackerOne (lectura de la política, sin tocar el objetivo)
+Descargado del navegador: Scope → Download CSV  y Program guidelines → PDF, para tener el CSV con los activos del alcance y PDF de las reglas guardados en el repositorio
+
