@@ -1,0 +1,58 @@
+identifier,asset_type,instruction,eligible_for_bounty,eligible_for_submission,availability_requirement,confidentiality_requirement,integrity_requirement,max_severity,system_tags,created_at,updated_at
+returns.spectacles.com,URL,returns.spectacles.com application is owned and managed by Netsuite. Please consider reporting vulnerabilities directly to them.,false,false,,,,critical,,2017-09-14 18:10:40 UTC,2023-01-24 13:03:44 UTC
+support.snapchat.com,URL,Static support website,false,false,,,,critical,,2018-07-04 00:05:52 UTC,2023-01-24 13:03:44 UTC
+Spectacles charging case,HARDWARE,"",false,false,,,,critical,,2018-07-04 00:06:38 UTC,2023-01-24 13:03:44 UTC
+com.bitstrips.imoji,APPLE_STORE_APP_ID,"[Non-core asset]
+[iOS App Store](https://itunes.apple.com/us/app/bitmoji-keyboard-your-avatar/id868077558)",true,true,low,low,low,medium,,2018-07-04 00:08:10 UTC,2023-01-24 13:03:44 UTC
+com.bitstrips.imoji,GOOGLE_PLAY_APP_ID,"[Non-core asset]
+[Google Play Store](https://play.google.com/store/apps/details?id=com.bitstrips.imoji)",true,true,low,low,low,medium,,2018-07-04 00:09:45 UTC,2023-01-24 13:03:44 UTC
+com.toyopagroup.picaboo,APPLE_STORE_APP_ID,"[Core asset]
+[iOS App Store](https://itunes.apple.com/us/app/snapchat/id447188370?mt=8)",true,true,low,medium,low,high,,2018-07-04 00:22:18 UTC,2023-01-24 13:03:44 UTC
+com.snapchat.android,GOOGLE_PLAY_APP_ID,"[Core asset]
+[Google Play Store](https://play.google.com/store/apps/details?id=com.snapchat.android)",true,true,low,medium,low,critical,,2018-07-04 00:22:55 UTC,2023-11-01 18:35:19 UTC
+Spectacles,HARDWARE,,false,false,low,medium,low,high,,2018-07-04 00:24:00 UTC,2023-09-19 19:35:21 UTC
+www.bitmoji.com,URL,[Non-core asset],true,true,low,low,low,medium,,2018-07-04 00:25:04 UTC,2023-01-24 13:03:43 UTC
+www.bitstrips.com,URL,[Non-core asset],true,true,low,low,low,medium,,2018-07-04 00:26:42 UTC,2023-01-24 13:03:43 UTC
+scan.snapchat.com,URL,"[Core asset]
+Snapcode creation website",true,true,none,low,none,low,,2018-07-04 00:28:54 UTC,2023-01-24 13:03:43 UTC
+kit.snapchat.com,URL,"[Core asset]
+SNAPKIT web application and SDKs",true,true,low,medium,low,high,,2018-07-04 00:33:28 UTC,2023-01-24 13:03:43 UTC
+snappublisher.snapchat.com,URL,"[Core asset]
+Snapchat's publisher tool. ",true,true,low,medium,low,high,,2018-07-04 00:34:19 UTC,2023-01-24 13:03:43 UTC
+geofilters.snapchat.com,URL,"[Core asset]
+Snapchat's on-demand Geofilters purchase website. ",true,true,low,medium,low,high,,2018-07-04 00:35:21 UTC,2023-01-24 13:03:43 UTC
+spectacles.com,URL,"[Core asset]
+Snapchat's spectacles purchase website. ",true,true,none,low,none,low,,2018-07-04 00:36:37 UTC,2023-01-24 13:03:43 UTC
+accounts.snapchat.com,URL,"[Core asset]
+Snapchat's account management website. ",true,true,high,high,high,critical,,2018-07-04 00:37:26 UTC,2023-01-24 13:03:42 UTC
+app.snapchat.com,URL,"[Core asset]
+Main server-side application hosted on Google App Engine under the hostname feelinsonice-hrd.appspot.com and app.snapchat.com.",true,true,high,high,high,critical,,2018-07-04 00:38:25 UTC,2023-01-24 13:03:42 UTC
+Lens Studio,DOWNLOADABLE_EXECUTABLES,,true,true,low,low,low,medium,,2020-07-23 16:49:19 UTC,2024-12-18 21:06:02 UTC
+map.snapchat.com,URL,"",true,true,none,none,low,low,,2020-07-30 23:23:11 UTC,2023-01-24 13:03:43 UTC
+story.snapchat.com,URL,"",true,true,none,none,low,low,,2020-07-30 23:23:58 UTC,2023-01-24 13:03:44 UTC
+ads.snapchat.com,URL,"",true,true,low,low,medium,high,,2020-07-30 23:26:31 UTC,2023-01-24 13:03:43 UTC
+*.sc-core.net,URL,Snapchat's internal services,true,true,high,high,high,critical,,2021-12-13 19:14:24 UTC,2023-01-24 13:03:43 UTC
+create.snapchat.com,URL,Snapchat's Geofilter creation tool. ,true,true,low,medium,low,high,,2021-12-13 19:17:03 UTC,2023-01-24 13:03:43 UTC
+business.snapchat.com,URL,Snapchat's Business Manager. ,true,true,high,high,high,critical,,2021-12-13 19:17:50 UTC,2023-01-24 13:03:43 UTC
+my.snapchat.com,URL,Snapchat's Spotlight on the web. ,true,true,low,medium,low,high,,2021-12-13 19:20:07 UTC,2023-01-24 13:03:43 UTC
+businesshelp.snapchat.com,URL,Snapchat's Salesforce instance,true,true,medium,low,low,high,,2022-02-02 22:55:52 UTC,2023-01-24 13:03:43 UTC
+https://lensstudio.snapchat.com/api/,SOURCE_CODE,,true,true,high,high,high,critical,JavaScript,2022-02-02 22:58:28 UTC,2024-12-18 21:06:13 UTC
+store.snapchat.com,URL,Snapchat's Bitmoji Merch Store,true,true,,,,critical,,2022-02-02 23:00:28 UTC,2023-01-24 13:03:43 UTC
+web.snapchat.com,URL,"",true,true,high,high,high,critical,,2022-07-19 17:06:40 UTC,2023-01-24 13:03:43 UTC
+blog.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:36:32 UTC
+code.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:36:40 UTC
+developer.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:36:55 UTC
+forum.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:36:19 UTC
+launch.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:38:50 UTC
+login.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:37:03 UTC
+msg.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:37:12 UTC
+playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:35:49 UTC
+relay.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:37:19 UTC
+rt.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:37:27 UTC
+store.playcanvas.com,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:10 UTC,2023-04-28 09:37:34 UTC
+http://dev*.playcanvas.com,WILDCARD,,false,false,none,none,none,none,,2023-04-27 12:07:30 UTC,2023-07-13 09:23:42 UTC
+playcanv.as,URL,,true,true,low,low,low,medium,,2023-04-27 12:07:48 UTC,2023-04-28 09:38:31 UTC
+dev.playcanv.as,URL,,false,false,none,none,none,none,,2023-04-27 12:07:56 UTC,2023-07-13 09:23:42 UTC
+*.sc-corp.net,OTHER,,true,true,high,high,high,critical,,2023-04-27 12:08:56 UTC,2023-07-13 09:23:42 UTC
+Tier A - Core Assets,OTHER,,true,true,,,,critical,,2023-05-08 21:07:34 UTC,2023-05-08 21:07:34 UTC
+"Tier B - Non Core (Bitmoji, Playcanvas)",OTHER,,true,true,low,low,low,medium,,2023-05-08 21:20:33 UTC,2023-07-13 09:24:55 UTC
