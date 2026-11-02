@@ -334,12 +334,12 @@ $ jq -r '.hostnames[]' crudo/*.json | grep -vE '(cloudfront|googleusercontent|1e
 -> 19 hostnames de Snap; 13 nuevos respecto a T3 (dominios raíz de otras marcas y web-gcp.api.sc-gw.com), todos fuera de alcance; en alcance solo spectacles.com (host exacto). Comprobación: dig +short A spectacles.com → 34.120.54.238 (Google Cloud), distinta de 34.149.46.130 → la asociación de Shodan es histórica o viene de un certificado compartido entre marcas, no de la resolución actual
 siguiente: commit de T6; pendiente (no solicitado): InternetDB de 34.120.54.238 (spectacles.com); después técnica 7
 
-### 2026-11-02 19:46 · T7 Google dorks: preparar lista de consultas
+2026-11-02 19:46 · T7 Google dorks: preparar lista de consultas
 $ cat > tecnica-07-dorks/dorks.txt << 'EOF' ... EOF   (commit 4d26365)
 -> 9 consultas (D1–D8b) sobre el alcance; método manual en navegador, solo página de resultados, sin abrir enlaces del objetivo
 siguiente: lanzar D1 (site:sc-corp.net) y anotar nº aproximado de resultados y hosts distintos
 
-### 2026-11-02 19:47 · T7 D1: indexación de *.sc-corp.net
+2026-11-02 19:47 · T7 D1: indexación de *.sc-corp.net
 $ (Google, incógnito) site:sc-corp.net
 -> ~2 resultados (más 1 anuncio de Search Console, descartado)
    · engflow-cache-rbe-gcp-staging.sc-corp.net: "Log in to EngFlow", login con Google de un entorno de staging (caché de compilación remota). Solo se anota que existe; no se abre.
@@ -349,14 +349,14 @@ $ (Google, incógnito) site:sc-corp.net
    · captura: tecnica-07-dorks/capturas/t7_d1_resultados.png
 siguiente: D2 site:sc-core.net
 
-### 2026-11-02 19:5X · T7 D2: indexación de *.sc-core.net
+2026-11-02 19:5X · T7 D2: indexación de *.sc-core.net
 $ (Google, incógnito) site:sc-core.net
 -> 0 resultados ("No se han encontrado resultados"); solo el anuncio de Search Console, descartado
    · sin contenido indexado en el comodín *.sc-core.net; coherente con infraestructura interna sin páginas públicas
    · captura: tecnica-07-dorks/capturas/t7_d2_resultados.png
 siguiente: D3 intitle:"index of" en los comodines
 
-### 2026-11-02 19:5X · T7 D3: listados de directorio en los comodines
+2026-11-02 19:5X · T7 D3: listados de directorio en los comodines
 $ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) intitle:"index of"
 -> 0 resultados, con y sin comillas (Google reintentó sin comillas automáticamente)
    · sin listados de directorio indexados en *.sc-corp.net ni *.sc-core.net
@@ -364,3 +364,10 @@ $ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) intitle:"index of"
    · captura: tecnica-07-dorks/capturas/t7_d3_resultados.png
 siguiente: D4 inurl:login/admin/signin en los comodines
 
+2026-11-02 19:5X · T7 D4: páginas de login/admin en los comodines
+$ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) (inurl:login OR inurl:admin OR inurl:signin)
+-> 0 resultados
+   · el login de EngFlow visto en D1 no aparece: inurl: filtra por la URL, y esa página está en la raíz del host ("Log in" solo en el título)
+   · limitación del dork: no detecta logins servidos en "/"
+   · captura: tecnica-07-dorks/capturas/t7_d4_resultados.png
+siguiente: D5 filetype:pdf/xlsx/docx/txt en los comodines
