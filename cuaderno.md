@@ -379,3 +379,13 @@ $ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) (filetype:pdf OR f
    · resumen D1–D5: la huella de los comodines en Google se limita a 2 hosts (engflow-cache-rbe-gcp-staging y stream), ambos ya en T3
    · captura: tecnica-07-dorks/capturas/t7_d5_resultados.png
 siguiente: D6 site:accounts.snapchat.com
+
+### 2026-11-02 20:03 · T7 D6: indexación de accounts.snapchat.com
+$ (Google, incógnito) site:accounts.snapchat.com
+-> ~240 resultados (más 1 anuncio de Search Console, descartado)
+   · primeros resultados: "Sign Up" (ruta › s...), "Snapchat: Log In" (› l...), "Snapchat+ | Available Plans" (precios de Snapchat+ y Lens+), y "Sign Up" localizado en árabe (› s...)
+   · el volumen se explica por versiones localizadas de las mismas páginas (registro, login, suscripción)
+   · las rutas completas no se ven: Google muestra la ruta recortada y los enlaces van cifrados (google.com/goto?url=...)
+   · funciones públicas indexadas: registro, inicio de sesión y suscripción de pago
+   · captura: tecnica-07-dorks/capturas/t7_d6_resultados_p1.png
+siguiente: D7 site:playcanvas.com -site:dev.playcanvas.com
