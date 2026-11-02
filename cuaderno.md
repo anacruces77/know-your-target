@@ -308,3 +308,12 @@ $ grep -Fxv -f subdominios_todos.txt csp_hosts_raiz.txt > csp_nuevos.txt
    No aparecieron en T3: probablemente sin certificado propio en crt.sh ni presencia en las fuentes de subfinder.
 siguiente: comprobar si los 7 nuevos están en el alcance (hosts exactos del programa)
 
+2026-11-02 19:35 · Comprobar alcance de los hosts de las CSP (local, sin peticiones)
+$ grep -Fx -f hosts_scope_exactos.txt csp_nuevos.txt
+$ grep -Fx -f excluidos.txt csp_nuevos.txt
+$ grep -Fx -f subdominios_en_scope.txt csp_en_t3.txt
+-> 7 nuevos: ninguno en alcance ni en exclusiones → fuera de alcance (snapchat.com no es comodín). Documentados, no contactados.
+   22 ya conocidos: 10 en alcance según T3 (accounts, ads, business, story, web.snapchat.com; chat-gold.sc-corp.net;
+   playcanvas.com, code., msg., relay.playcanvas.com). Corrige la nota de 19:29: los subdominios de playcanvas de la CSP sí están en alcance.
+   Hosts de Snap fuera de los dominios raíz del programa (snap.com, snap-dev.net, sc-prod.net, sc-static.net, sc-analytics.appspot.com): no cruzados con T3, fuera de alcance.
+siguiente: commit de los ficheros procesados de T5
