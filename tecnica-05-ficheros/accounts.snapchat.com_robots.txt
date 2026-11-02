@@ -1,0 +1,24 @@
+HTTP/2 200 
+cache-control: public, max-age=86400
+accept-ranges: bytes
+last-modified: Sun, 01 Nov 2026 18:22:07 GMT
+etag: W/"86-1a19858f065"
+content-type: text/plain; charset=UTF-8
+content-length: 134
+vary: Accept-Encoding
+date: Mon, 02 Nov 2026 18:15:49 GMT
+x-envoy-upstream-service-time: 0
+server: API Gateway
+strict-transport-security: max-age=31536000; includeSubDomains
+via: 1.1 google
+alt-svc: h3=":443"; ma=2592000
+
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://accounts.snapchat.com
+
+# Sitemaps
+Sitemap: https://accounts.snapchat.com/sitemap.xml
