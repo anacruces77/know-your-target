@@ -492,3 +492,17 @@ $ dig +short A <host> @8.8.8.8 (bucle sobre tecnica-06-servicios/hosts_mapa.txt)
    snappublisher.snapchat.com resuelve a 108.177.15.121, la misma IP que developer-portal.sc-corp.net.
    engflow-cache-rbe-gcp-staging.sc-corp.net en 136.119.114.15, fuera del frontal común. Propietarios de las redes nuevas sin verificar
 siguiente: redactar mapa.md
+
+2026-11-02 21:10 · Cierre Parte 1 · mapa de superficie de ataque (procesado local, sin peticiones al objetivo)
+$ git log -1 --date=format:'%Y-%m-%d %H:%M' --format='%h %ad %s' -- mapa.md
+-> ed2fd2a 2026-11-02 21:01 Create attack surface map for Snapchat
+   mapa.md redactado con las 8 técnicas:
+   T1 RDAP · T2 DNS · T3 subdominios · T4 Netcraft · T5 ficheros expuestos ·
+   T6 Shodan InternetDB · T7 Google dorks · T8 correos
+   Cifras clave: 803 subdominios únicos, 338 en alcance, 31 hosts en la tabla del mapa (29 con IP pública, 2 sin registro A).
+   Contacto directo con el objetivo: solo T5 (12 peticiones GET a 4 hosts en alcance, sin seguir redirecciones).
+   Correcciones registradas: subdominios de playcanvas sí en alcance (19:35); DNSSEC de Netcraft erróneo, sin DS en los 4 dominios (20:51).
+   No realizado (decisión, no olvido):
+   · InternetDB de 34.120.54.238 (spectacles.com): la IP ya está identificada como Google Cloud; no cambia el mapa
+   · sitemap.xml de accounts.snapchat.com y playcanvas.com: T5 se limitó a robots.txt y security.txt
+siguiente: Parte 2
