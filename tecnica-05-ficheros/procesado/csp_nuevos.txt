@@ -1,0 +1,7 @@
+hotfix-dot-snap-profile-manager.snapchat.com
+hotfix-dot-softserve.snapchat.com
+preproduction-dot-snap-profile-manager.snapchat.com
+preproduction-dot-softserve.snapchat.com
+profile-preprod.snapchat.com
+snap-profile-manager.snapchat.com
+softserve.snapchat.com
