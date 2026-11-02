@@ -1,0 +1,24 @@
+HTTP/2 200 
+content-type: text/plain; charset=UTF-8
+content-length: 68
+date: Mon, 02 Nov 2026 18:29:23 GMT
+x-xss-protection: 1; mode=block
+set-cookie: pc_consent_required=1; Max-Age=86400; Domain=.playcanvas.com; Path=/; Expires=Tue, 03 Nov 2026 18:29:23 GMT; Secure; SameSite=Lax
+accept-ranges: bytes
+cache-control: public, max-age=0
+last-modified: Mon, 02 Nov 2026 16:10:36 GMT
+etag: W/"44-1a19d06e060"
+content-security-policy: script-src 'self' 'unsafe-inline' 'unsafe-eval' playcanvas.com msg.playcanvas.com code.playcanvas.com relay.playcanvas.com https://js.stripe.com https://*.google.com https://*.google-analytics.com https://www.googletagmanager.com https://s3-eu-west-1.amazonaws.com; worker-src 'self' blob:; font-src https://playcanvas.com 'self' data:;
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-cache: Miss from cloudfront
+via: 1.1 5651c5fca8afe79cc5570a66b1d1d9e0.cloudfront.net (CloudFront)
+x-amz-cf-pop: MAD53-P4
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: DUwKrNPdVDNJWPP5hB3d6Dc0sdvT1mpEvSqDxUikAtTFFxOWasxyQA==
+
+User-agent: *
+Allow: /
+
+Sitemap: https://playcanvas.com/sitemap.xml

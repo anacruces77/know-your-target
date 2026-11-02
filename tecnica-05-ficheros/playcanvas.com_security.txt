@@ -1,0 +1,93 @@
+HTTP/2 404 
+content-type: text/html; charset=utf-8
+content-length: 1548
+date: Mon, 02 Nov 2026 18:32:15 GMT
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+set-cookie: pc_consent_required=1; Max-Age=86400; Domain=.playcanvas.com; Path=/; Expires=Tue, 03 Nov 2026 18:32:15 GMT; Secure; SameSite=Lax
+etag: W/"60c-GSSBtRLQMf82PPfA73cNIHwZWjg"
+content-security-policy: script-src 'self' 'unsafe-inline' 'unsafe-eval' playcanvas.com msg.playcanvas.com code.playcanvas.com relay.playcanvas.com https://js.stripe.com https://*.google.com https://*.google-analytics.com https://www.googletagmanager.com https://s3-eu-west-1.amazonaws.com; worker-src 'self' blob:; font-src https://playcanvas.com 'self' data:;
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+x-frame-options: DENY
+x-cache: Error from cloudfront
+via: 1.1 bbdffd737d0a61e3a4816bfdfc3534ee.cloudfront.net (CloudFront)
+x-amz-cf-pop: MAD53-P4
+alt-svc: h3=":443"; ma=86400
+x-amz-cf-id: BBDqX53gq9N2gsvlsouH3FJfc4VyN0Kyh3tW5Ip-LR_GXELGCOIpIw==
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oops, there was a problem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #1d1f21;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
+    }
+
+    .message {
+        max-width: 500px;
+        padding: 2rem;
+    }
+
+    .message h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #ff6600;
+    }
+
+    .message p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        color: #ccc;
+    }
+
+    .logo {
+        margin-bottom: 2rem;
+    }
+
+    .home {
+        display: block;
+        margin: 8px 16px;
+        font-weight: bold;
+        color: #f60;
+
+        &:hover {
+            color: #fff;
+        }
+    }    
+
+    .logo svg {
+      width: 60px;
+      height: 60px;
+      fill: #ff6600;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <!-- Simple PlayCanvas-style logo -->
+    <img src="https://playcanvas.com/static-assets/images/gremlin.png" width="112" height="112" alt="Ghost">
+  </div>
+
+  <div class="message">
+    <h1 id='status'>404</h1>
+    <p>
+        <h2 id='message'>Not Found</h2>
+        <a class='home' href='/'>get me out of here!</a>
+    </p>
+  </div>
+</body>
+</html>
