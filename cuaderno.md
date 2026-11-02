@@ -334,4 +334,8 @@ $ jq -r '.hostnames[]' crudo/*.json | grep -vE '(cloudfront|googleusercontent|1e
 -> 19 hostnames de Snap; 13 nuevos respecto a T3 (dominios raíz de otras marcas y web-gcp.api.sc-gw.com), todos fuera de alcance; en alcance solo spectacles.com (host exacto). Comprobación: dig +short A spectacles.com → 34.120.54.238 (Google Cloud), distinta de 34.149.46.130 → la asociación de Shodan es histórica o viene de un certificado compartido entre marcas, no de la resolución actual
 siguiente: commit de T6; pendiente (no solicitado): InternetDB de 34.120.54.238 (spectacles.com); después técnica 7
 
+### 2026-11-02 19:46 · T7 Google dorks: preparar lista de consultas
+$ cat > tecnica-07-dorks/dorks.txt << 'EOF' ... EOF   (commit 4d26365)
+-> 9 consultas (D1–D8b) sobre el alcance; método manual en navegador, solo página de resultados, sin abrir enlaces del objetivo
+siguiente: lanzar D1 (site:sc-corp.net) y anotar nº aproximado de resultados y hosts distintos
 
