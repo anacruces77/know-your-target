@@ -317,3 +317,9 @@ $ grep -Fx -f subdominios_en_scope.txt csp_en_t3.txt
    playcanvas.com, code., msg., relay.playcanvas.com). Corrige la nota de 19:29: los subdominios de playcanvas de la CSP sí están en alcance.
    Hosts de Snap fuera de los dominios raíz del programa (snap.com, snap-dev.net, sc-prod.net, sc-static.net, sc-analytics.appspot.com): no cruzados con T3, fuera de alcance.
 siguiente: commit de los ficheros procesados de T5
+
+2026-11-02 19:39 · Resolver IPv4 actuales de los 4 hosts de T4 para consultarlas en Shodan InternetDB
+$ dig +short A <host> (bucle sobre los 4 hosts, filtrando CNAME) | tee tecnica-06-servicios/ips_resueltas.txt
+-> 7 IPs únicas (resolver 8.8.8.8): accounts 34.149.46.130 y app 34.149.130.113 (Google Cloud, IPs distintas); developer-portal 108.177.15.121 (frontal de Google, coherente con IAP de T5); playcanvas.com 4 IPs 108.157.128.x (CloudFront)
+siguiente: consultar las 7 IPs en internetdb.shodan.io y guardar el JSON en crudo (sin contacto con el objetivo)
+
