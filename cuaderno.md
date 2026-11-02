@@ -171,3 +171,10 @@ $ curl -sS -i --max-time 15 https://accounts.snapchat.com/.well-known/security.t
    Otros: X-Frame-Options allow-from (obsoleto), cookie sc-wcid sin HttpOnly/SameSite, build frontend 1793222690.
 pendiente: cruzar hosts de la CSP con la lista de T3 (local, sin peticiones)
 siguiente: /security.txt (ubicación legacy) en accounts.snapchat.com
+
+2026-11-02 19:18 · Buscar security.txt (ubicación legacy) en accounts.snapchat.com
+$ curl -sS -i --max-time 15 https://accounts.snapchat.com/security.txt -o tecnica-05-ficheros/accounts.snapchat.com_security.txt
+-> HTTP/2 404, misma página de error de la app. Sin security.txt en ninguna ubicación
+   (coherente con reportes vía HackerOne). CSP idéntica a la anterior → política global de la app.
+   Solo cambian alt-svc (orden) y trace-id → probablemente otro nodo del balanceador.
+siguiente: commit del host; después robots.txt en app.snapchat.com
