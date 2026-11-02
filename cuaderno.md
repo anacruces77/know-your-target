@@ -152,3 +152,10 @@ $ (navegador) https://sitereport.netcraft.com/?url=https://playcanvas.com
 -> Tecnología (Netcraft, rastreo de hoy): CloudFront, Route 53, JavaScript, Google Tag Manager (1 tracker), gzip, HTML5 con canvas y video; cabeceras X-Frame-Options Deny, CSP, Referrer-Policy, X-Content-Type-Options, X-XSS-Protection. Netcraft no detecta HSTS
 -> Captura: tecnica-04-huella/capturas/netcraft-playcanvas.com.jpeg
 siguiente: cerrar técnica 4 (4 hosts de 4 zonas) y pasar a técnica 5
+
+2026-11-02 19:15 · Ver directivas de rastreo de accounts.snapchat.com
+$ curl -sS -i --max-time 15 https://accounts.snapchat.com/robots.txt -o tecnica-05-ficheros/accounts.snapchat.com_robots.txt
+-> HTTP/2 200. Allow: / sin Disallow (no revela rutas). Directiva Host (legado Yandex). Sitemap: /sitemap.xml (pendiente).
+   Cabeceras confirman T4: server "API Gateway", Envoy, via 1.1 google. HSTS con includeSubDomains, sin preload.
+   ETag W/"tamaño-mtime" en hex → probablemente Node.js (Express/serve-static).
+siguiente: /.well-known/security.txt en accounts.snapchat.com
