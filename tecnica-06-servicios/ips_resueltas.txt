@@ -1,0 +1,8 @@
+# 2026-11-02 19:39 Europe/Madrid · dig A +short · resolver: 8.8.8.8
+accounts.snapchat.com 34.149.46.130
+app.snapchat.com 34.149.130.113
+developer-portal.sc-corp.net 108.177.15.121
+playcanvas.com 108.157.128.35
+playcanvas.com 108.157.128.127
+playcanvas.com 108.157.128.60
+playcanvas.com 108.157.128.118
