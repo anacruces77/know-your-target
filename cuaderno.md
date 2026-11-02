@@ -130,3 +130,13 @@ $ (navegador) https://sitereport.netcraft.com/?url=https://app.snapchat.com
 -> Comparación con accounts: misma red y DNS, pero distinto frontal (Google Frontend frente a API Gateway + Envoy) y distinto certificado (DV gestionado por Google frente a OV DigiCert *.snap.com). Compatible con App Engine, como indica el CSV, sin confirmación explícita de Netcraft
 -> Captura: tecnica-04-huella/capturas/netcraft-app.snapchat.com.jpeg
 siguiente: Netcraft de un host de *.sc-core.net o *.sc-corp.net
+
+2026-11-02 19:08 · huella tecnológica de developer-portal.sc-corp.net con Netcraft Site Report. Host elegido de tecnica-03-subdominios/procesado/subdominios_en_scope.txt (308 hosts bajo *.sc-core.net y *.sc-corp.net), filtrando por nombres de servicio público; host de producción con nombre de web pública
+$ (navegador) https://sitereport.netcraft.com/?url=https://developer-portal.sc-corp.net
+-> Background: título "Sign in - Google Accounts". El rastreador de Netcraft llegó a la pantalla de inicio de sesión de Google, no al portal: acceso protegido por autenticación de Google (compatible con Identity-Aware Proxy o App Engine con login obligatorio; Netcraft no lo confirma). Visto por primera vez en octubre de 2018
+-> Red: IPv4 74.125.193.121, AS15169 (red principal de Google, no Google Cloud AS396982 como accounts y app), rDNS di-in-f121.1e100.net (frontal de Google); IPv6 2a00:1450:400b:c01::79 (Google Ireland, "EU metro frontend", RIPE). Primer host de los analizados con IPv6
+-> DNS: sc-corp.net en AWS Route 53 (ns-1038.awsdns-01.org), registrador MarkMonitor (organización DNStination Inc.), DNSSEC activado. Mismo patrón que snapchat.com
+-> TLS: certificado DV de Google Trust Services (WR3), solo developer-portal.sc-corp.net; válido 2026-10-27 a 2027-01-25 (~90 días), 2 SCT; TLSv1.3, TLS_AES_256_GCM_SHA384, RSA 2048, PFS sí, h2; sin SSLv3; nunca vulnerable a Heartbleed; sin cabecera Server
+-> Tecnología (Netcraft, rastreo de hoy): JavaScript, Google Hosted Libraries, gzip, HTML5, CSP, HSTS, X-Frame-Options Deny, X-Content-Type-Options. Probablemente corresponden a la página de login de Google y no al portal (aparecen a la vez X-XSS-Protection Block y Disabled, señal de varias respuestas en la redirección)
+-> Captura: tecnica-04-huella/capturas/netcraft-developer-portal.sc-corp.net.jpeg
+siguiente: Netcraft de playcanvas.com
