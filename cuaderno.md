@@ -230,3 +230,10 @@ $ curl -sS -i --max-time 15 https://developer-portal.sc-corp.net/robots.txt -o t
    Location: client_id OAuth 993232849302-… (público por diseño; 993232849302 probablemente número de proyecto GCP), scope "openid email", PKCE S256.
    state opaco, no decodificado.
 siguiente: /.well-known/security.txt en developer-portal.sc-corp.net
+
+2026-11-02 19:26 · Buscar security.txt (ubicación RFC 9116) en developer-portal.sc-corp.net
+$ curl -sS -i --max-time 15 https://developer-portal.sc-corp.net/.well-known/security.txt -o tecnica-05-ficheros/developer-portal.sc-corp.net_well-known_security.txt
+$ grep -iE "^HTTP|x-goog-iap|^set-cookie|Invalid IAP" tecnica-05-ficheros/developer-portal.sc-corp.net_well-known_security.txt
+-> HTTP/2 302 generado por IAP (x-goog-iap-generated-response: true), mismo cuerpo "Invalid IAP credentials: empty token".
+   Cookie GCP_IAP_XSRF_NONCE con nombre distinto al de la petición anterior → nonce único por intento. /.well-known/ también protegido.
+siguiente: /security.txt (ubicación legacy) en developer-portal.sc-corp.net
