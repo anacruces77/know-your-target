@@ -389,3 +389,47 @@ $ (Google, incógnito) site:accounts.snapchat.com
    · funciones públicas indexadas: registro, inicio de sesión y suscripción de pago
    · captura: tecnica-07-dorks/capturas/t7_d6_resultados_p1.png
 siguiente: D7 site:playcanvas.com -site:dev.playcanvas.com
+
+### 2026-11-02 20:14 · T7 D7: indexación de playcanvas.com
+$ (Google, incógnito) site:playcanvas.com -site:dev.playcanvas.com
+-> ~44.500 resultados
+   · primeros resultados, todos en el host exacto playcanvas.com (en alcance): / (portada del motor), /terms (Terms of Use, 15 may 2024), /explore (galería pública de proyectos)
+   · el recuento incluye subdominios (site: no se limita al host exacto) y contenido público de usuarios; no se puede separar desde la página de resultados
+   · solo se considera en alcance lo servido por playcanvas.com; cualquier subdominio debe estar en hosts_scope_exactos.txt
+   · limitación: -site:dev.playcanvas.com no excluye otros dev*.playcanvas.com
+   · captura: tecnica-07-dorks/capturas/tt7_d7_resultados.png
+siguiente: D8 "sc-corp.net" en GitHub/Pastebin/GitLab
+
+### 2026-11-02 20:16 · T7 D8: referencias a sc-corp.net en repositorios públicos
+$ (Google, incógnito) "sc-corp.net" (site:github.com OR site:pastebin.com OR site:gitlab.com)
+-> ~47 resultados, todos visibles en GitHub (ninguno de Pastebin ni GitLab en la primera página)
+   · Snapchat/KeyDB (repo oficial), ci.yaml: referencia a wiki.sc-corp.net (wiki interna, documentación de herramientas)
+   · snap-research/kontinuouskontext: instrucciones de clonado desde github.sc-corp.net (probable GitHub Enterprise interno)
+   · Z-Siqi/Clash-for-Windows_Rule (tercero): lista de dominios de Snap para reglas de proxy (sc-gw.com, sc-jpl.com, sc-prod.net); fuera de alcance
+   · sin credenciales ni tokens visibles en los fragmentos
+   · cruce con T3: wiki.sc-corp.net y github.sc-corp.net ya conocidos (subdominios_en_scope.txt:326 y :136); D8 aporta contexto sobre su función (wiki interna, GitHub Enterprise interno)
+   · captura: tecnica-07-dorks/capturas/t7_d8_resultados_p1.png
+siguiente: D8b "sc-core.net" en GitHub/Pastebin/GitLab
+
+### 2026-11-02 20:18 · T7 D8b: referencias a sc-core.net en repositorios públicos
+$ (Google, incógnito) "sc-core.net" (site:github.com OR site:pastebin.com OR site:gitlab.com)
+-> ~4 resultados, todos en GitHub
+   · zricethezav/h1domains y arkadiyt/bounty-targets-data (wildcards.txt): agregadores públicos de alcances de bug bounty que listan *.sc-core.net como comodín del programa
+   · sin subdominios concretos de sc-core.net ni credenciales en los fragmentos; nada que cruzar con T3
+   · coherente con D2: sc-core.net apenas tiene huella pública
+   · captura: tecnica-07-dorks/capturas/t7_d8b_resultados.png
+siguiente: cierre de T7 (resumen)
+
+### 2026-11-02 20:XX · T7 Google dorks: resumen
+-> 9 dorks lanzados (D1–D8b), método manual en navegador, solo página de resultados
+   · comodines (D1–D5): huella mínima en Google; 2 hosts indexados de sc-corp.net (engflow-cache-rbe-gcp-staging, stream), 0 de sc-core.net; sin listados de directorio, logins por URL ni documentos
+   · accounts.snapchat.com (D6, ~240): registro, login y Snapchat+, con muchas versiones localizadas
+   · playcanvas.com (D7, ~44.500): portada, /terms, /explore; el recuento incluye subdominios y contenido de usuarios
+   · repositorios públicos (D8, ~47; D8b, ~4): referencias a wiki.sc-corp.net y github.sc-corp.net (wiki interna y GitHub Enterprise interno), más agregadores de alcances de bug bounty
+   · hosts nuevos respecto a T3: ninguno. Aporte de la T7: contexto sobre la función de 4 hosts ya conocidos (login de EngFlow en staging, StreamShark, wiki interna, GitHub Enterprise)
+   · sin credenciales ni datos sensibles observados
+siguiente: técnica 8
+
+
+
+
