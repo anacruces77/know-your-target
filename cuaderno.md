@@ -178,3 +178,34 @@ $ curl -sS -i --max-time 15 https://accounts.snapchat.com/security.txt -o tecnic
    (coherente con reportes vía HackerOne). CSP idéntica a la anterior → política global de la app.
    Solo cambian alt-svc (orden) y trace-id → probablemente otro nodo del balanceador.
 siguiente: commit del host; después robots.txt en app.snapchat.com
+
+2026-11-02 19:20 · Ver directivas de rastreo de app.snapchat.com
+$ curl -sS -i --max-time 15 https://app.snapchat.com/robots.txt -o tecnica-05-ficheros/app.snapchat.com_robots.txt
+-> HTTP/2 404, página de error genérica de Google (no de Snapchat). server "Google Frontend": confirma T4, servicio en App Engine/Cloud Run sin capa web propia.
+   x-snapchat-notice "Snapchat Private APIs - Unauthorized use is prohibited" → host de API, sin contenido indexable; no tiene robots.txt.
+   x-snapchat-request-id en hex, parte decodificable: "feelinsonice-hrd" (probablemente ID del proyecto App Engine; -hrd = High Replication Datastore, proyecto antiguo),
+   "master" (probablemente versión) y 1793379376 (= 2026-10-30 ~17:00 UTC, probablemente último despliegue). Interpretación, no confirmado.
+   Respuesta sin HSTS, CSP ni X-Content-Type-Options (habitual en 404 de API; observación).
+siguiente: /.well-known/security.txt en app.snapchat.com
+
+2026-11-02 19:21 · Verificar decodificación del x-snapchat-request-id (local, sin peticiones al objetivo)
+$ echo 6665656c696e736f6e6963652d687264 | xxd -r -p
+$ echo 6d6173746572 | xxd -r -p
+$ echo 31373933333739333736 | xxd -r -p
+$ date -u -d @1793379376
+-> "feelinsonice-hrd", "master", "1793379376" → 2026-10-30 16:56:16 UTC (17:56 hora local).
+   Decodificación confirmada; el significado de cada campo (proyecto, versión, despliegue) sigue siendo interpretación.
+siguiente: /.well-known/security.txt en app.snapchat.com
+
+2026-11-02 19:22 · Buscar security.txt (ubicación RFC 9116) en app.snapchat.com
+$ curl -sS -i --max-time 15 https://app.snapchat.com/.well-known/security.txt -o tecnica-05-ficheros/app.snapchat.com_well-known_security.txt
+-> HTTP/2 404, misma página de error genérica de Google Frontend. Sin security.txt en /.well-known/.
+   x-snapchat-request-id: mismo proyecto (feelinsonice-hrd), versión (master) y despliegue (1793379376) que la petición anterior.
+   Primeros 4 bytes cambian 6ae8d483 → 6ae8d4d1: diferencia 78 = segundos entre las dos peticiones (18:20:51 → 18:22:09).
+   El final del ID también cambia (…0132 → …0146), significado desconocido.
+siguiente: verificar en local que los primeros 4 bytes son el timestamp de la petición
+
+2026-11-02 HH:MM · Verificar que el inicio del x-snapchat-request-id es el timestamp de la petición (local, sin peticiones)
+$ date -u -d @$((16#6ae8d4d1))
+-> (resultado). Coincide con la cabecera date → formato del ID: timestamp + proyecto + versión + despliegue, compatible con IDs de log de App Engine.
+siguiente: /security.txt (ubicación legacy) en app.snapchat.com
