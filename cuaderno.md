@@ -254,3 +254,8 @@ $ curl -sS -i --max-time 15 https://playcanvas.com/robots.txt -o tecnica-05-fich
    (no consultados; solo cuentan si están listados en el programa). Terceros: Stripe, Google, GA/GTM, S3 eu-west-1.
    X-Frame-Options DENY, nosniff, Referrer-Policy. Sin HSTS (coincide con Netcraft en T4).
 siguiente: verificar en local que el ETag contiene la fecha de modificación
+
+2026-11-02 19:30 · Verificar que el segundo campo del ETag de playcanvas.com es la fecha de modificación (local, sin peticiones)
+$ date -u -d @$(( 16#1a19d06e060 / 1000 ))
+-> Mon Nov 2 16:10:36 UTC 2026, coincide con last-modified → formato W/"tamaño-mtime_ms" en hex confirmado (huella compatible con Node.js Express/serve-static).
+siguiente: /.well-known/security.txt en playcanvas.com
