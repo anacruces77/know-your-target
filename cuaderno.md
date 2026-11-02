@@ -345,6 +345,6 @@ $ (Google, incógnito) site:sc-corp.net
    · engflow-cache-rbe-gcp-staging.sc-corp.net: "Log in to EngFlow", login con Google de un entorno de staging (caché de compilación remota). Solo se anota que existe; no se abre.
    · stream.sc-corp.net: StreamShark, contenido de vídeo embebido (Sticker Kit / Login Kit)
    · ambos en alcance (comodín *.sc-corp.net)
-   · cruce con T3: <nuevos / ya conocidos>
+   · cruce con T3: ambos ya conocidos (subdominios_en_scope.txt:116 y :290); D1 no aporta hosts nuevos, solo contexto (login de EngFlow en staging, StreamShark)
    · captura: tecnica-07-dorks/capturas/t7_d1_resultados.png
 siguiente: D2 site:sc-core.net
