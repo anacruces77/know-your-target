@@ -356,3 +356,11 @@ $ (Google, incógnito) site:sc-core.net
    · captura: tecnica-07-dorks/capturas/t7_d2_resultados.png
 siguiente: D3 intitle:"index of" en los comodines
 
+### 2026-11-02 19:5X · T7 D3: listados de directorio en los comodines
+$ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) intitle:"index of"
+-> 0 resultados, con y sin comillas (Google reintentó sin comillas automáticamente)
+   · sin listados de directorio indexados en *.sc-corp.net ni *.sc-core.net
+   · las sugerencias de búsqueda que muestra Google son genéricas de "index of", sin relación con el objetivo
+   · captura: tecnica-07-dorks/capturas/t7_d3_resultados.png
+siguiente: D4 inurl:login/admin/signin en los comodines
+
