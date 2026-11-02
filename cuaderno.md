@@ -431,5 +431,9 @@ siguiente: cierre de T7 (resumen)
 siguiente: técnica 8
 
 
+2026-11-02 20:23 · Preparar carpeta y comprobar versión y fuentes de theHarvester
+$ theHarvester -h
+-> (pendiente)
+siguiente: elegir fuentes pasivas sin API key y dominios a consultar
 
 
