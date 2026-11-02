@@ -297,3 +297,14 @@ $ grep -ih '^content-security-policy:' tecnica-05-ficheros/*.txt | tr -d '\r' | 
 -> (número de hosts únicos)
 siguiente: cruzar csp_hosts.txt con subdominios_todos.txt de T3
 
+2026-11-02 19:35 · Cruzar hosts de las CSP con la lista de T3 (local, sin peticiones)
+$ RAIZ=$(paste -sd'|' tecnica-03-subdominios/procesado/dominios_raiz.txt | sed 's/\./\\./g')
+$ grep -v '^\*' csp_hosts.txt | grep -E "(^|\.)($RAIZ)$" > csp_hosts_raiz.txt
+$ grep -Fx  -f subdominios_todos.txt csp_hosts_raiz.txt > csp_en_t3.txt
+$ grep -Fxv -f subdominios_todos.txt csp_hosts_raiz.txt > csp_nuevos.txt
+-> 29 hosts concretos de los dominios raíz: 22 ya en T3, 7 nuevos (todos *.snapchat.com, todos de frame-ancestors de accounts).
+   Nuevos: snap-profile-manager, softserve y sus variantes hotfix-dot-/preproduction-dot-, más profile-preprod.
+   Patrón "-dot-" = enrutado de versiones de App Engine → servicios snap-profile-manager y softserve con entornos hotfix y preproduction.
+   No aparecieron en T3: probablemente sin certificado propio en crt.sh ni presencia en las fuentes de subfinder.
+siguiente: comprobar si los 7 nuevos están en el alcance (hosts exactos del programa)
+
