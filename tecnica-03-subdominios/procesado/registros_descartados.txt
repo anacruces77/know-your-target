@@ -1,0 +1,10 @@
+_cisco-uds.snappublisher.snapchat.com
+_cisco-uds._tcp.snappublisher.snapchat.com
+_collab-edge.snappublisher.snapchat.com
+_collab-edge._tls.snappublisher.snapchat.com
+_cuplogin._tcp.snappublisher.snapchat.com
+_dmarc.snappublisher.snapchat.com
+_etcd-server-ssl.snappublisher.snapchat.com
+_mta-sts.snappublisher.snapchat.com
+_tcp.snappublisher.snapchat.com
+_tls.snappublisher.snapchat.com

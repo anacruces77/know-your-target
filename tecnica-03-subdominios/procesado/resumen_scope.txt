@@ -1,0 +1,8 @@
+Comodines (sc-core.net + sc-corp.net): 308
+Hosts concretos autorizados encontrados: 30 de 30
+En scope:    338
+Fuera scope: 465
+Exclusiones explícitas encontradas:
+dev.playcanv.as
+returns.spectacles.com
+support.snapchat.com

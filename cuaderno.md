@@ -63,3 +63,48 @@ $ curl -s https://rdap.verisign.com/net/v1/domain/sc-core.net | jq . | tee rdap_
 $ curl -s https://rdap.verisign.com/net/v1/domain/sc-corp.net | jq . | tee rdap_sc-corp.json
 -> ambos con MarkMonitor Inc. y NS en AWS Route 53 (zonas distintas a la de snapchat.com y entre sí); sc-corp.net alta 2014-07-03, caduca 2028-07-03; sc-core.net alta 2015-04-30, caduca 2028-04-30; solo 3 bloqueos client (snapchat.com tiene también los server); sin DNSSEC
 siguiente: técnica 3 · subdominios con subfinder y crt.sh
+
+2026-11-02 18:03 · objetivo: alcance del programa (preparación, sin tocar el objetivo)
+$ listas generadas a partir del CSV en tecnica-03-subdominios/procesado/ (dominios_scope_wildcard, dominios_mapeo, hosts_scope_exactos, excluidos, dominios_raiz)
+-> 2 comodines en alcance, 6 dominios solo para mapeo, 30 hosts concretos en alcance, 3 exclusiones
+siguiente: subfinder sobre los 8 dominios raíz
+
+2026-11-02 18:05 · objetivo: entorno (comprobación de la herramienta)
+$ subfinder -version ; subfinder -ls ; cat ~/.config/subfinder/provider-config.yaml
+-> subfinder v2.14.0 (aviso de versión desactualizada), 50 fuentes, ninguna clave API configurada: solo ~13 fuentes gratuitas disponibles
+siguiente: primera ejecución sin claves
+
+2026-11-02 18:12 · objetivo: 8 dominios raíz (fuentes pasivas, no toca el objetivo)
+$ subfinder -dL procesado/dominios_raiz.txt -all -silent -o raw/subfinder_sinclaves_2026-11-02.txt
+-> 774 resultados. Duplicados por mayúsculas y registros DNS de servicio (_dmarc, _tcp) mezclados con hosts; ruido bajo snappublisher.snapchat.com
+siguiente: repetir con atribución de fuentes
+
+2026-11-02 18:18 · objetivo: 8 dominios raíz (fuentes pasivas)
+$ subfinder -dL procesado/dominios_raiz.txt -all -cs -oJ -silent -o raw/subfinder_fuentes_2026-11-02.json
+-> 808 resultados (34 más que a las 18:12: las fuentes pasivas varían entre ejecuciones). Solo 6 fuentes con datos: thc 442, rapiddns 273, crtsh 271, hackertarget 174, waybackarchive 33, hudsonrock 18. Por dominio: snapchat.com 359, sc-corp.net 238, sc-core.net 74, bitstrips.com 51, playcanvas.com 36, spectacles.com 29, bitmoji.com 17, playcanv.as 4
+siguiente: consulta directa a crt.sh
+
+2026-11-02 18:23 · objetivo: 8 dominios raíz (logs públicos de Certificate Transparency, no toca el objetivo)
+$ curl -s "https://crt.sh/?q=%25.<dominio>&output=json" (bucle, 5 s entre peticiones)
+-> 8 JSON válidos. Certificados: snapchat.com 2989, spectacles.com 2189, playcanvas.com 453, bitmoji.com 104, bitstrips.com 91, playcanv.as 22, sc-corp.net 20, sc-core.net 2
+siguiente: extraer nombres únicos
+
+2026-11-02 18:28 · objetivo: resultados de crt.sh (procesado local)
+$ jq -r '.[].name_value' raw/crtsh_*.json | tr 'A-Z' 'a-z' | sed 's/^\*\.//' | sort -u
+-> 292 nombres: 290 de los dominios objetivo + 2 de team--snapchat.com (dominio ajeno, propiedad no verificada, no se analiza). sc-core.net y sc-corp.net solo devuelven el dominio raíz (certificados comodín): CT no revela hosts internos
+siguiente: fusionar con subfinder y comparar
+
+2026-11-02 18:29 · objetivo: resultados de subfinder y crt.sh (procesado local)
+$ fusión, normalización a minúsculas y comparación con comm
+-> 803 subdominios únicos. Solo subfinder 523, solo crt.sh 9 (8 dominios raíz + 1 subdominio real: msg-app-x9dwa4.playcanvas.com), ambas 281, 10 registros _ descartados. El DNS pasivo aporta mucho más que CT en este objetivo
+siguiente: separar superficie en alcance y fuera de alcance
+
+2026-11-02 18:31 · objetivo: 803 subdominios (filtrado contra el alcance)
+$ comodines + hosts exactos, menos exclusiones
+-> 338 en alcance (308 bajo comodines + 30 de 30 hosts concretos), 465 fuera de alcance. Aparecen las 3 exclusiones explícitas, descartadas. Error corregido: el filtro dev* eliminaba developer.playcanvas.com, que está en alcance (la entrada explícita prevalece sobre dev*.playcanvas.com)
+siguiente: análisis de nomenclatura
+
+2026-11-02 18:32 · objetivo: 338 subdominios en alcance (análisis de nombres, sin tocar el objetivo)
+$ recuento de palabras clave, zonas y sufijos de entorno
+-> hipótesis por nomenclatura, no verificadas: sc-core.net = red de oficinas (34 *.qsys, salas Q-SYS de audio/vídeo; sedes lon03, ams, oxf02, pdx01, ein100; Windows en EC2 ec2amaz-*; fortimanager, wifienroll). sc-corp.net = herramientas internas (jira, wiki, gerrit, github, spinnaker, ssh-ca, secproxy, identity-broker) en AWS, GCP, Oracle Cloud y App Engine. Muchos más nombres de entornos no productivos (dev, stage, staging, beta) que de prod (22)
+siguiente: volcar los resultados en mapa.md

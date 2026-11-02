@@ -1,0 +1,3 @@
+support.snapchat.com
+returns.spectacles.com
+dev.playcanv.as

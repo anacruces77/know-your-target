@@ -1,0 +1,15 @@
+     34 qsys.sc-core.net
+     18 gae.sc-corp.net
+     12 users.sc-core.net
+      9 ein100.sc-core.net
+      6 search.sc-corp.net
+      5 secproxy.sc-corp.net
+      4 oxf02.sc-core.net
+      3 mesh.sc-corp.net
+      2 builds.sc-corp.net
+      1 xray-beta.sc-corp.net
+      1 www7b.sc-corp.net
+      1 www5c.sc-corp.net
+      1 www5b.sc-corp.net
+      1 www5a.sc-corp.net
+      1 www2s.sc-corp.net

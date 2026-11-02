@@ -1,0 +1,7 @@
+-dev     49
+-stage   12
+-staging 24
+-beta    6
+-prod    22
+-uat     2
+-test    2

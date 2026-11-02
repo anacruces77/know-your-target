@@ -1,0 +1,4 @@
+Solo subfinder: 523
+Solo crt.sh:    9
+Ambas:          281
+Total único:    803

@@ -1,0 +1,2 @@
+sc-core.net
+sc-corp.net
