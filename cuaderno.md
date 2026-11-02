@@ -184,7 +184,7 @@ $ curl -sS -i --max-time 15 https://app.snapchat.com/robots.txt -o tecnica-05-fi
 -> HTTP/2 404, página de error genérica de Google (no de Snapchat). server "Google Frontend": confirma T4, servicio en App Engine/Cloud Run sin capa web propia.
    x-snapchat-notice "Snapchat Private APIs - Unauthorized use is prohibited" → host de API, sin contenido indexable; no tiene robots.txt.
    x-snapchat-request-id en hex, parte decodificable: "feelinsonice-hrd" (probablemente ID del proyecto App Engine; -hrd = High Replication Datastore, proyecto antiguo),
-   "master" (probablemente versión) y 1793379376 (= 2026-10-30 ~17:00 UTC, probablemente último despliegue). Interpretación, no confirmado.
+   "master" (probablemente versión) y 1793379376 (= 2026-10-30 16:56 UTC, probablemente último despliegue). Interpretación, no confirmado.
    Respuesta sin HSTS, CSP ni X-Content-Type-Options (habitual en 404 de API; observación).
 siguiente: /.well-known/security.txt en app.snapchat.com
 
