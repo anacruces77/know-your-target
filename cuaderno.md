@@ -437,4 +437,7 @@ $ theHarvester -h
 siguiente: theHarvester sobre snapchat.com con fuentes pasivas sin API key
 siguiente: elegir fuentes pasivas sin API key y dominios a consultar
 
-
+2026-11-02 20:25 · Correos indexados públicamente para snapchat.com
+$ theHarvester -d snapchat.com -b duckduckgo,yahoo,baidu,mojeek,commoncrawl,otx,urlscan -l 500 -f tecnica-08-correos/crudo/th_snapchat
+-> 0 correos, 0 personas. 20 hosts (5 con prefijo "2F" = %2F de URLs → 15 únicos; support.snapchat.com excluido del alcance), 71 IPs / 16 ASN de CDN y DNS pasivo, sin validar, no se usan. Mojeek sin API key (modo scraping). theHarvester 4.11.1 ignora la ruta de -f: JSON/XML guardados en la raíz y movidos a crudo/
+siguiente: cruzar los 15 hosts con T3; theHarvester sobre playcanvas.com y snap.com
