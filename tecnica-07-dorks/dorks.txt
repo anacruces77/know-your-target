@@ -1,0 +1,11 @@
+# T7 - Google dorks (manual en navegador, solo página de resultados)
+# Formato: ID<TAB>consulta
+D1	site:sc-corp.net
+D2	site:sc-core.net
+D3	(site:sc-corp.net OR site:sc-core.net) intitle:"index of"
+D4	(site:sc-corp.net OR site:sc-core.net) (inurl:login OR inurl:admin OR inurl:signin)
+D5	(site:sc-corp.net OR site:sc-core.net) (filetype:pdf OR filetype:xlsx OR filetype:docx OR filetype:txt)
+D6	site:accounts.snapchat.com
+D7	site:playcanvas.com -site:dev.playcanvas.com
+D8	"sc-corp.net" (site:github.com OR site:pastebin.com OR site:gitlab.com)
+D8b	"sc-core.net" (site:github.com OR site:pastebin.com OR site:gitlab.com)
