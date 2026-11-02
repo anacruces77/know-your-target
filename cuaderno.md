@@ -209,3 +209,15 @@ siguiente: verificar en local que los primeros 4 bytes son el timestamp de la pe
 $ date -u -d @$((16#6ae8d4d1))
 -> (resultado). Coincide con la cabecera date → formato del ID: timestamp + proyecto + versión + despliegue, compatible con IDs de log de App Engine.
 siguiente: /security.txt (ubicación legacy) en app.snapchat.com
+
+2026-11-02 19:22 · Verificar que el inicio del x-snapchat-request-id es el timestamp de la petición (local, sin peticiones)
+$ date -u -d @$((16#6ae8d4d1))
+-> Mon Nov 2 18:22:09 UTC 2026, coincide con la cabecera date. Formato del ID: timestamp + proyecto + versión + despliegue, compatible con IDs de log de App Engine.
+siguiente: /security.txt (ubicación legacy) en app.snapchat.com
+
+2026-11-02 19:23 · Buscar security.txt (ubicación legacy) en app.snapchat.com
+$ curl -sS -i --max-time 15 https://app.snapchat.com/security.txt -o tecnica-05-ficheros/app.snapchat.com_security.txt
+-> HTTP/2 404, error genérico de Google Frontend. Sin security.txt en ninguna ubicación.
+   Request-id empieza por 6ae8d50f: +62 respecto al anterior = 62 s entre peticiones (18:22:09 → 18:23:11). Tercera muestra coherente: estructura del ID confirmada.
+   Final del ID: …0132, …0146, …0160 en las tres peticiones; significado desconocido.
+siguiente: commit del host; después robots.txt en developer-portal.sc-corp.net
