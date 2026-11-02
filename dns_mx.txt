@@ -1,0 +1,5 @@
+30 alt2.aspmx.l.google.com.
+40 aspmx2.googlemail.com.
+50 aspmx3.googlemail.com.
+10 aspmx.l.google.com.
+20 alt1.aspmx.l.google.com.
