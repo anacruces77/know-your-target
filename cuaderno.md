@@ -291,3 +291,9 @@ siguiente: cerrar técnica 5
    CSP de accounts y playcanvas revelan hosts internos, de preproducción y terceros (documentados, no contactados).
 pendiente: cruzar hosts de las CSP con la lista de T3 (local); sitemap.xml de accounts y playcanvas (no solicitados)
 siguiente: commit final de técnica 5
+
+2026-11-02 19:3X · Extraer hosts de las CSP guardadas en T5 (local, sin peticiones)
+$ grep -ih '^content-security-policy:' tecnica-05-ficheros/*.txt | tr -d '\r' | tr ' ;' '\n\n' | sed -E 's#^https?://##; s#/.*##' | grep -vE "^'" | grep '\.' | sort -u > tecnica-05-ficheros/procesado/csp_hosts.txt
+-> (número de hosts únicos)
+siguiente: cruzar csp_hosts.txt con subdominios_todos.txt de T3
+
