@@ -1,0 +1,54 @@
+# scope.txt · programa: Snapchat (HackerOne) · consultado: 2026-10-28
+# fuente: https://hackerone.com/snapchat/policy_scopes (CSV oficial del 2026-10-28)
+# solo se incluyen activos de tipo dominio/URL; las apps móviles, Lens Studio
+# y el hardware no son dominios y se documentan en alcance.md
+
+# --- comodines autorizados ---
+*.sc-core.net
+*.sc-corp.net
+
+# --- snapchat.com (Tier A - core) ---
+web.snapchat.com
+accounts.snapchat.com
+app.snapchat.com
+business.snapchat.com
+store.snapchat.com
+ads.snapchat.com
+create.snapchat.com
+geofilters.snapchat.com
+kit.snapchat.com
+my.snapchat.com
+snappublisher.snapchat.com
+businesshelp.snapchat.com
+lensstudio.snapchat.com
+scan.snapchat.com
+map.snapchat.com
+story.snapchat.com
+
+# --- spectacles.com (Tier A - core) ---
+spectacles.com
+
+# --- Bitmoji / Bitstrips (Tier B - no core) ---
+www.bitmoji.com
+www.bitstrips.com
+
+# --- PlayCanvas (Tier B - no core) ---
+playcanvas.com
+blog.playcanvas.com
+code.playcanvas.com
+developer.playcanvas.com
+forum.playcanvas.com
+launch.playcanvas.com
+login.playcanvas.com
+msg.playcanvas.com
+relay.playcanvas.com
+rt.playcanvas.com
+store.playcanvas.com
+playcanv.as
+
+# fuera de alcance (no se toca):
+!support.snapchat.com
+!returns.spectacles.com
+!dev.playcanv.as
+# dev*.playcanvas.com también está fuera; como playcanvas.com no tiene comodín,
+# cualquier subdominio no listado arriba ya queda fuera automáticamente
