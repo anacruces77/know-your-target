@@ -237,3 +237,10 @@ $ grep -iE "^HTTP|x-goog-iap|^set-cookie|Invalid IAP" tecnica-05-ficheros/develo
 -> HTTP/2 302 generado por IAP (x-goog-iap-generated-response: true), mismo cuerpo "Invalid IAP credentials: empty token".
    Cookie GCP_IAP_XSRF_NONCE con nombre distinto al de la petición anterior → nonce único por intento. /.well-known/ también protegido.
 siguiente: /security.txt (ubicación legacy) en developer-portal.sc-corp.net
+
+2026-11-02 19:28 · Buscar security.txt (ubicación legacy) en developer-portal.sc-corp.net
+$ curl -sS -i --max-time 15 https://developer-portal.sc-corp.net/security.txt -o tecnica-05-ficheros/developer-portal.sc-corp.net_security.txt
+$ grep -iE "^HTTP|x-goog-iap|^set-cookie|Invalid IAP" tecnica-05-ficheros/developer-portal.sc-corp.net_security.txt
+-> HTTP/2 302 generado por IAP, mismo cuerpo, nonce nuevo. Las 3 rutas interceptadas por IAP:
+   ningún fichero accesible sin autenticación (portal interno correctamente protegido).
+siguiente: commit del host; después robots.txt en playcanvas.com
