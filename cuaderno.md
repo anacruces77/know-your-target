@@ -108,3 +108,15 @@ siguiente: análisis de nomenclatura
 $ recuento de palabras clave, zonas y sufijos de entorno
 -> hipótesis por nomenclatura, no verificadas: sc-core.net = red de oficinas (34 *.qsys, salas Q-SYS de audio/vídeo; sedes lon03, ams, oxf02, pdx01, ein100; Windows en EC2 ec2amaz-*; fortimanager, wifienroll). sc-corp.net = herramientas internas (jira, wiki, gerrit, github, spinnaker, ssh-ca, secproxy, identity-broker) en AWS, GCP, Oracle Cloud y App Engine. Muchos más nombres de entornos no productivos (dev, stage, staging, beta) que de prod (22)
 siguiente: técnica 4 · huella tecnológica con Netcraft
+
+## Técnica 4 · Huella tecnológica (Netcraft)
+
+2026-11-02 18:48 · huella tecnológica de accounts.snapchat.com con Netcraft Site Report (consulta a la base de datos de Netcraft, sin tráfico al objetivo)
+$ (navegador) https://sitereport.netcraft.com/?url=https://accounts.snapchat.com
+-> Red: IPv4 34.149.46.130 (sin IPv6), AS396982, rDNS 130.46.149.34.bc.googleusercontent.com; netblock Google LLC (GOOGL-2, 34.128.0.0-34.191.255.255, ARIN), hosting Google, EE. UU.
+-> DNS: snapchat.com en AWS Route 53 (ns-220.awsdns-27.com), registrador MarkMonitor, DNSSEC activado. DNS en AWS y servidor en Google Cloud (multinube)
+-> TLS: certificado DigiCert Global G2 TLS RSA SHA256 2020 CA1, validación OV a Snap Inc. (California); CN *.snap.com, SAN *.snapchat.com y unos 30 dominios más de Snap (lista plegada en Netcraft; fuera de alcance salvo los listados); válido 2026-09-25 a 2027-04-11, 3 SCT
+-> TLS: TLSv1.3, TLS_AES_256_GCM_SHA384, RSA 2048, PFS sí, ALPN h2; sin SSLv3; Heartbleed no (ya no ofrece Heartbeat); OCSP stapling sin respuesta
+-> Tecnología (Netcraft, rastreo de hace 24 días): Server "API Gateway"; Google Compute Engine + Google HTTPS Load Balancer + Envoy; cabeceras HSTS (incluye subdominios), CSP, X-Content-Type-Options, X-XSS-Protection; sin trackers; sin SPF/DMARC propios (correo cubierto en técnica 2)
+-> Captura: tecnica-04-huella/capturas/netcraft-accounts.snapchat.com.jpeg
+siguiente: Netcraft del siguiente host en alcance
