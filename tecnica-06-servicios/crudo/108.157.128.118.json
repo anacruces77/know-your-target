@@ -1,0 +1,1 @@
+{"cpes":["cpe:/a:amazon:amazon_cloudfront"],"hostnames":["server-108-157-128-118.mad53.r.cloudfront.net"],"ip":"108.157.128.118","ports":[80,443],"tags":["cdn","cloud"],"vulns":[]}
