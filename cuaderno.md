@@ -159,3 +159,15 @@ $ curl -sS -i --max-time 15 https://accounts.snapchat.com/robots.txt -o tecnica-
    Cabeceras confirman T4: server "API Gateway", Envoy, via 1.1 google. HSTS con includeSubDomains, sin preload.
    ETag W/"tamaño-mtime" en hex → probablemente Node.js (Express/serve-static).
 siguiente: /.well-known/security.txt en accounts.snapchat.com
+
+2026-11-02 19:17 · Buscar security.txt (ubicación RFC 9116) en accounts.snapchat.com
+$ curl -sS -i --max-time 15 https://accounts.snapchat.com/.well-known/security.txt -o tecnica-05-ficheros/accounts.snapchat.com_well-known_security.txt
+-> HTTP/2 404 (página de error HTML de la app). No hay security.txt en /.well-known/.
+   404 servido por la app (no por estáticos): HSTS y "via: 1.1 google" duplicados → dos capas tras el gateway.
+   CSP revela dependencias y hosts: staging-us-central1-gcp.api.snapchat.com, chat-gold.sc-corp.net (en comodín),
+   sentry.sc-prod.net, *.snap-dev.net, hosts preprod/hotfix de snapchat.com, localhost:3000 en form-action,
+   http://softserve.snapchat.com (sin TLS) en frame-ancestors. Terceros: Arkose Labs, reCAPTCHA, GA/GTM, Sentry, Contentful, Bitmoji.
+   Solo documentados; no se contactan (varios fuera de alcance).
+   Otros: X-Frame-Options allow-from (obsoleto), cookie sc-wcid sin HttpOnly/SameSite, build frontend 1793222690.
+pendiente: cruzar hosts de la CSP con la lista de T3 (local, sin peticiones)
+siguiente: /security.txt (ubicación legacy) en accounts.snapchat.com
