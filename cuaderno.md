@@ -323,3 +323,15 @@ $ dig +short A <host> (bucle sobre los 4 hosts, filtrando CNAME) | tee tecnica-0
 -> 7 IPs únicas (resolver 8.8.8.8): accounts 34.149.46.130 y app 34.149.130.113 (Google Cloud, IPs distintas); developer-portal 108.177.15.121 (frontal de Google, coherente con IAP de T5); playcanvas.com 4 IPs 108.157.128.x (CloudFront)
 siguiente: consultar las 7 IPs en internetdb.shodan.io y guardar el JSON en crudo (sin contacto con el objetivo)
 
+
+2026-11-02 19:41 · Consultar las 7 IPs resueltas en Shodan InternetDB (sin contacto con el objetivo)
+$ curl -s -o tecnica-06-servicios/crudo/<ip>.json https://internetdb.shodan.io/<ip> (bucle, sleep 1)
+-> 7/7 con 200. Todas: solo 80/443, vulns vacío. playcanvas: 4 IPs CloudFront PoP mad53 (CPE amazon_cloudfront). developer-portal: frontal de Google 1e100.net (coherente con IAP). app: PTR genérico de Google Cloud. accounts (34.149.46.130): 19 nombres de Snap asociados (snap.com, bitmoji.com, spectacles.com, api.snapchat.com…), CPE google:cloud_platform, etiqueta pqc → probable balanceador de Google Cloud propio de Snap, no frontal anónimo (dato de Shodan sin fecha de escaneo)
+siguiente: extraer hostnames y cruzarlos con T3 y con el alcance
+
+2026-11-02 19:42 · Cruzar hostnames de InternetDB con T3 y con el alcance
+$ jq -r '.hostnames[]' crudo/*.json | grep -vE '(cloudfront|googleusercontent|1e100)' | sort -u > procesado/hostnames_internetdb.txt ; comm -23 con T3 ; grep -Fxf hosts_scope_exactos.txt
+-> 19 hostnames de Snap; 13 nuevos respecto a T3 (dominios raíz de otras marcas y web-gcp.api.sc-gw.com), todos fuera de alcance; en alcance solo spectacles.com (host exacto). Comprobación: dig +short A spectacles.com → 34.120.54.238 (Google Cloud), distinta de 34.149.46.130 → la asociación de Shodan es histórica o viene de un certificado compartido entre marcas, no de la resolución actual
+siguiente: commit de T6; pendiente (no solicitado): InternetDB de 34.120.54.238 (spectacles.com); después técnica 7
+
+
