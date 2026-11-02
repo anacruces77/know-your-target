@@ -18,3 +18,9 @@ Descargado del navegador: Scope → Download CSV  y Program guidelines → PDF, 
 Objetivo: programa Snapchat en HackerOne (lectura de la política, sin tocar el objetivo)
 $ alcance.md y scope.txt redactados entre el 28/10 y 02/11 a partir del CSV (46 activos), las guidelines y las Core Ineligible Findings de HackerOne, subidos hoy al repositorio (antes estaban vacíos)
 -> sin comodín *.snapchat.com; comodines en alcance *.sc-core.net y *.sc-corp.net, 16 subdominios de snapchat.com listados uno a uno, fuera de alcance: support.snapchat.com, returns.spectacles.com, dev.playcanv.as, dev*.playcanvas.com
+
+
+2026-11-02 17:27
+Objetivo: snapchat.com (dominio raíz, consulta al registrador, no al objetivo)
+$ curl -s https://rdap.markmonitor.com/rdap/domain/SNAPCHAT.COM | jq . | tee rdap_snapchat_markmonitor.json
+-> titular y contacto técnico: DNStination Inc. ("Domain Administrator", San Francisco, US), titular oculto tras proxy, no aparece Snap Inc., registrador MarkMonitor Inc., NS de AWS sin cambios desde 2016-03-15. Sin DNSSEC. No se obtienen personas ni correos de Snapchat
