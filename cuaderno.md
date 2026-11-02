@@ -107,4 +107,4 @@ siguiente: análisis de nomenclatura
 2026-11-02 18:32 · objetivo: 338 subdominios en alcance (análisis de nombres, sin tocar el objetivo)
 $ recuento de palabras clave, zonas y sufijos de entorno
 -> hipótesis por nomenclatura, no verificadas: sc-core.net = red de oficinas (34 *.qsys, salas Q-SYS de audio/vídeo; sedes lon03, ams, oxf02, pdx01, ein100; Windows en EC2 ec2amaz-*; fortimanager, wifienroll). sc-corp.net = herramientas internas (jira, wiki, gerrit, github, spinnaker, ssh-ca, secproxy, identity-broker) en AWS, GCP, Oracle Cloud y App Engine. Muchos más nombres de entornos no productivos (dev, stage, staging, beta) que de prod (22)
-siguiente: volcar los resultados en mapa.md
+siguiente: técnica 4 · huella tecnológica con Netcraft
