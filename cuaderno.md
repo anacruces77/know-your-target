@@ -259,3 +259,20 @@ siguiente: verificar en local que el ETag contiene la fecha de modificación
 $ date -u -d @$(( 16#1a19d06e060 / 1000 ))
 -> Mon Nov 2 16:10:36 UTC 2026, coincide con last-modified → formato W/"tamaño-mtime_ms" en hex confirmado (huella compatible con Node.js Express/serve-static).
 siguiente: /.well-known/security.txt en playcanvas.com
+
+2026-11-02 19:30 · Buscar security.txt (ubicación RFC 9116) en playcanvas.com
+$ curl -sS -i --max-time 15 https://playcanvas.com/.well-known/security.txt -o tecnica-05-ficheros/playcanvas.com_well-known_security.txt
+-> HTTP/2 404, página de error propia de PlayCanvas generada por el origen (mismas cabeceras de seguridad que robots.txt). Sin security.txt en /.well-known/.
+   x-cache "Error from cloudfront" = respuesta 4xx del origen, no fallo del CDN.
+   ETag W/"60c-GSSBtRLQMf82PPfA73cNIHwZWjg": 0x60c = 1548 = content-length + 27 caracteres base64. Formato distinto al de robots.txt
+   (estático: tamaño-mtime; dinámico: tamaño-hash), compatible con el módulo etag de Express.
+siguiente: verificar en local que el ETag es el SHA-1 del cuerpo
+
+2026-11-02 19:31 · Verificar que el ETag del 404 de playcanvas.com es el SHA-1 del cuerpo (local, sin peticiones)
+$ sed '1,/^\r$/d' tecnica-05-ficheros/playcanvas.com_well-known_security.txt > /tmp/pc404_body.html
+$ wc -c < /tmp/pc404_body.html
+$ openssl dgst -sha1 -binary /tmp/pc404_body.html | base64 | cut -c1-27
+-> 1548 bytes (= content-length = 0x60c) y GSSBtRLQMf82PPfA73cNIHwZWjg (= ETag). Confirmado: ETag = SHA-1 del cuerpo en base64 (27 car.).
+   Junto con el formato tamaño-mtime de robots.txt → huella muy sólida de Node.js con el módulo etag (compatible con Express).
+siguiente: /security.txt (ubicación legacy) en playcanvas.com
+
