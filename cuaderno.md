@@ -140,3 +140,15 @@ $ (navegador) https://sitereport.netcraft.com/?url=https://developer-portal.sc-c
 -> Tecnología (Netcraft, rastreo de hoy): JavaScript, Google Hosted Libraries, gzip, HTML5, CSP, HSTS, X-Frame-Options Deny, X-Content-Type-Options. Probablemente corresponden a la página de login de Google y no al portal (aparecen a la vez X-XSS-Protection Block y Disabled, señal de varias respuestas en la redirección)
 -> Captura: tecnica-04-huella/capturas/netcraft-developer-portal.sc-corp.net.jpeg
 siguiente: Netcraft de playcanvas.com
+
+2026-11-02 19:11 · huella tecnológica de playcanvas.com con Netcraft Site Report. Host concreto en alcance (adquisición de Snap con infraestructura propia; dev*.playcanvas.com excluido y no consultado)
+$ (navegador) https://sitereport.netcraft.com/?url=https://playcanvas.com
+-> Background: "PlayCanvas | Open Source WebGL & WebGPU Game Engine", visto por primera vez en marzo de 2011
+-> Red: IPv4 18.66.171.80 (sin IPv6), AS16509, rango AMAZO-CF (Amazon); rDNS server-18-66-171-80.dub56.r.cloudfront.net: nodo de CloudFront en Dublín. La IP es del CDN y el servidor de origen queda oculto. Infraestructura en AWS, a diferencia de los hosts de Snap en Google
+-> DNS: Route 53 (ns-579.awsdns-08.net), MarkMonitor (DNStination Inc.), DNSSEC activado. Mismo patrón que snapchat.com y sc-corp.net
+-> TLS: certificado DV de Amazon (Amazon RSA 2048 M01, compatible con AWS Certificate Manager); SAN playcanvas.com y *.playcanvas.com (el comodín cubre dev*.playcanvas.com, excluido del programa y no consultado); válido 2026-09-14 a 2027-03-30, 3 SCT
+-> TLS: TLSv1.3, TLS_AES_128_GCM_SHA256 (los otros hosts usaban AES-256), RSA 2048, PFS sí, h2; sin SSLv3; Heartbleed no; OCSP stapling válido (único de los cuatro hosts)
+-> Correo: SPF propio con include:_spf.google.com (Google Workspace), include:spf.mandrillapp.com (Mandrill/Mailchimp) y -all; sin DMARC
+-> Tecnología (Netcraft, rastreo de hoy): CloudFront, Route 53, JavaScript, Google Tag Manager (1 tracker), gzip, HTML5 con canvas y video; cabeceras X-Frame-Options Deny, CSP, Referrer-Policy, X-Content-Type-Options, X-XSS-Protection. Netcraft no detecta HSTS
+-> Captura: tecnica-04-huella/capturas/netcraft-playcanvas.com.jpeg
+siguiente: cerrar técnica 4 (4 hosts de 4 zonas) y pasar a técnica 5
