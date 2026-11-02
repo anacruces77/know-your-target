@@ -433,7 +433,8 @@ siguiente: técnica 8
 
 2026-11-02 20:23 · Preparar carpeta y comprobar versión y fuentes de theHarvester
 $ theHarvester -h
--> (pendiente)
+-> theHarvester 4.11.1; 56 fuentes en -b. .gitignore excluye crudo/ y correos*.txt (datos personales)
+siguiente: theHarvester sobre snapchat.com con fuentes pasivas sin API key
 siguiente: elegir fuentes pasivas sin API key y dominios a consultar
 
 
