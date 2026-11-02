@@ -276,3 +276,18 @@ $ openssl dgst -sha1 -binary /tmp/pc404_body.html | base64 | cut -c1-27
    Junto con el formato tamaño-mtime de robots.txt → huella muy sólida de Node.js con el módulo etag (compatible con Express).
 siguiente: /security.txt (ubicación legacy) en playcanvas.com
 
+2026-11-02 19:32 · Buscar security.txt (ubicación legacy) en playcanvas.com
+$ curl -sS -i --max-time 15 https://playcanvas.com/security.txt -o tecnica-05-ficheros/playcanvas.com_security.txt
+$ sed '/^\r$/q' tecnica-05-ficheros/playcanvas.com_security.txt
+-> HTTP/2 404, misma página de error. Sin security.txt en ninguna ubicación.
+   ETag idéntico al del 404 anterior (mismo cuerpo → mismo hash): confirma que depende solo del contenido.
+siguiente: cerrar técnica 5
+
+2026-11-02 19:33 · Cierre técnica 5: ficheros expuestos (12 peticiones, 4 hosts, sin seguir redirecciones)
+-> robots.txt: accounts 200 (Allow: /), app 404 (host de API), developer-portal 302 IAP, playcanvas 200 (Allow: /). Ninguno revela rutas.
+   security.txt: no publicado en ninguno de los 4 hosts en ninguna ubicación (coherente con reportes vía HackerOne).
+   Hallazgos de huella: accounts y playcanvas con ETag del módulo etag de Node.js (Express); app en App Engine (proyecto feelinsonice-hrd, versión master,
+   request-id = timestamp + proyecto + versión + despliegue); developer-portal tras Google IAP (confirma hipótesis de T4; client_id OAuth, PKCE).
+   CSP de accounts y playcanvas revelan hosts internos, de preproducción y terceros (documentados, no contactados).
+pendiente: cruzar hosts de las CSP con la lista de T3 (local); sitemap.xml de accounts y playcanvas (no solicitados)
+siguiente: commit final de técnica 5
