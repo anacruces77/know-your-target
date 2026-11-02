@@ -244,3 +244,13 @@ $ grep -iE "^HTTP|x-goog-iap|^set-cookie|Invalid IAP" tecnica-05-ficheros/develo
 -> HTTP/2 302 generado por IAP, mismo cuerpo, nonce nuevo. Las 3 rutas interceptadas por IAP:
    ningún fichero accesible sin autenticación (portal interno correctamente protegido).
 siguiente: commit del host; después robots.txt en playcanvas.com
+
+2026-11-02 19:29 · Ver directivas de rastreo de playcanvas.com
+$ curl -sS -i --max-time 15 https://playcanvas.com/robots.txt -o tecnica-05-ficheros/playcanvas.com_robots.txt
+-> HTTP/2 200. Allow: / sin Disallow (no revela rutas). Sitemap: /sitemap.xml (pendiente).
+   CloudFront confirmado: x-amz-cf-pop MAD53 (Madrid) frente a dub56 (Dublín) en Netcraft → el nodo depende de quién consulta; origen oculto. x-cache Miss.
+   ETag W/"44-1a19d06e060": 0x44 = 68 = content-length, mismo formato que accounts.snapchat.com → probablemente Node.js (Express/serve-static) también aquí.
+   CSP parcial (sin default-src); script-src con 'unsafe-inline' y 'unsafe-eval' (observación). Subdominios en CSP: msg., code., relay.playcanvas.com
+   (no consultados; solo cuentan si están listados en el programa). Terceros: Stripe, Google, GA/GTM, S3 eu-west-1.
+   X-Frame-Options DENY, nosniff, Referrer-Policy. Sin HSTS (coincide con Netcraft en T4).
+siguiente: verificar en local que el ETag contiene la fecha de modificación
