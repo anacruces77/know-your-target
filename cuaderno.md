@@ -221,3 +221,12 @@ $ curl -sS -i --max-time 15 https://app.snapchat.com/security.txt -o tecnica-05-
    Request-id empieza por 6ae8d50f: +62 respecto al anterior = 62 s entre peticiones (18:22:09 → 18:23:11). Tercera muestra coherente: estructura del ID confirmada.
    Final del ID: …0132, …0146, …0160 en las tres peticiones; significado desconocido.
 siguiente: commit del host; después robots.txt en developer-portal.sc-corp.net
+
+2026-11-02 19:24 · Ver directivas de rastreo de developer-portal.sc-corp.net
+$ curl -sS -i --max-time 15 https://developer-portal.sc-corp.net/robots.txt -o tecnica-05-ficheros/developer-portal.sc-corp.net_robots.txt
+-> HTTP/2 302 a accounts.google.com (no seguida). Cuerpo "Invalid IAP credentials: empty token".
+   Confirma hipótesis de T4: Google Identity-Aware Proxy (x-goog-iap-generated-response: true, cookie GCP_IAP_XSRF_NONCE Secure+HttpOnly 10 min,
+   redirect_uri en iap.googleapis.com). IAP intercepta todas las rutas: robots.txt no accesible sin autenticación; sin cabeceras del backend (server, HSTS).
+   Location: client_id OAuth 993232849302-… (público por diseño; 993232849302 probablemente número de proyecto GCP), scope "openid email", PKCE S256.
+   state opaco, no decodificado.
+siguiente: /.well-known/security.txt en developer-portal.sc-corp.net
