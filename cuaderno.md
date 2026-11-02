@@ -120,3 +120,13 @@ $ (navegador) https://sitereport.netcraft.com/?url=https://accounts.snapchat.com
 -> Tecnología (Netcraft, rastreo de hace 24 días): Server "API Gateway"; Google Compute Engine + Google HTTPS Load Balancer + Envoy; cabeceras HSTS (incluye subdominios), CSP, X-Content-Type-Options, X-XSS-Protection; sin trackers; sin SPF/DMARC propios (correo cubierto en técnica 2)
 -> Captura: tecnica-04-huella/capturas/netcraft-accounts.snapchat.com.jpeg
 siguiente: Netcraft del siguiente host en alcance
+
+2026-11-02 18:59 · huella tecnológica de app.snapchat.com con Netcraft Site Report (consulta a la base de datos de Netcraft, sin tráfico al objetivo)
+$ (navegador) https://sitereport.netcraft.com/?url=https://app.snapchat.com
+-> Red: IPv4 34.149.130.113 (sin IPv6), AS396982, rDNS 113.130.149.34.bc.googleusercontent.com; mismo netblock que accounts (Google LLC, GOOGL-2, 34.128.0.0-34.191.255.255); DNS igual (Route 53, MarkMonitor, DNSSEC)
+-> TLS: certificado DV de Google Trust Services (WR3), sin organización; CN app.snapchat.com, SAN app.snapchat.com y gcs.sc-cdn.net (sc-cdn.net fuera de alcance); válido 2026-10-15 a 2027-01-13 (~90 días, renovación automática), 2 SCT
+-> TLS: TLSv1.3, TLS_AES_256_GCM_SHA384, RSA 2048, PFS sí, ALPN h2; sin SSLv3; Heartbleed no; OCSP stapling sin respuesta
+-> Tecnología (Netcraft, rastreo de hace 9 días): Server "Google Frontend"; Google Compute Engine; Netcraft no detecta Envoy ni cabeceras de seguridad; sin trackers
+-> Comparación con accounts: misma red y DNS, pero distinto frontal (Google Frontend frente a API Gateway + Envoy) y distinto certificado (DV gestionado por Google frente a OV DigiCert *.snap.com). Compatible con App Engine, como indica el CSV, sin confirmación explícita de Netcraft
+-> Captura: tecnica-04-huella/capturas/netcraft-app.snapchat.com.jpeg
+siguiente: Netcraft de un host de *.sc-core.net o *.sc-corp.net
