@@ -348,3 +348,11 @@ $ (Google, incógnito) site:sc-corp.net
    · cruce con T3: ambos ya conocidos (subdominios_en_scope.txt:116 y :290); D1 no aporta hosts nuevos, solo contexto (login de EngFlow en staging, StreamShark)
    · captura: tecnica-07-dorks/capturas/t7_d1_resultados.png
 siguiente: D2 site:sc-core.net
+
+### 2026-11-02 19:5X · T7 D2: indexación de *.sc-core.net
+$ (Google, incógnito) site:sc-core.net
+-> 0 resultados ("No se han encontrado resultados"); solo el anuncio de Search Console, descartado
+   · sin contenido indexado en el comodín *.sc-core.net; coherente con infraestructura interna sin páginas públicas
+   · captura: tecnica-07-dorks/capturas/t7_d2_resultados.png
+siguiente: D3 intitle:"index of" en los comodines
+
