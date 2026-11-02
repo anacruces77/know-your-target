@@ -441,3 +441,40 @@ siguiente: elegir fuentes pasivas sin API key y dominios a consultar
 $ theHarvester -d snapchat.com -b duckduckgo,yahoo,baidu,mojeek,commoncrawl,otx,urlscan -l 500 -f tecnica-08-correos/crudo/th_snapchat
 -> 0 correos, 0 personas. 20 hosts (5 con prefijo "2F" = %2F de URLs → 15 únicos; support.snapchat.com excluido del alcance), 71 IPs / 16 ASN de CDN y DNS pasivo, sin validar, no se usan. Mojeek sin API key (modo scraping). theHarvester 4.11.1 ignora la ruta de -f: JSON/XML guardados en la raíz y movidos a crudo/
 siguiente: cruzar los 15 hosts con T3; theHarvester sobre playcanvas.com y snap.com
+
+2026-11-02 20:31 · Cruzar hosts de theHarvester (snapchat.com) con T3
+$ jq -r '.hosts[]' tecnica-08-correos/crudo/th_snapchat.json | cut -d: -f1 | sed 's/^2F//' | sort -u ; comm -23 / comm -12 contra T3 y hosts_scope_exactos.txt
+-> 15 hosts únicos, 0 nuevos respecto a T3. 5 en alcance exacto: accounts, ads, business, businesshelp, web (.snapchat.com)
+siguiente: theHarvester sobre playcanvas.com y snap.com
+
+2026-11-02 20:32 · Correos indexados públicamente para playcanvas.com
+$ theHarvester -d playcanvas.com -b duckduckgo,yahoo,baidu,mojeek,commoncrawl,otx,urlscan -l 500 -f th_playcanvas   (ejecutado desde tecnica-08-correos/crudo/)
+-> 1 correo: support@playcanvas.com (buzón genérico). 0 personas. 5 hosts (".playcanvas.com" es artefacto → 4: api, blog, developer, login), 8 IPs / 4 ASN sin validar, no se usan. Mojeek sin API key (modo scraping)
+siguiente: cruzar los 4 hosts con T3 y hosts_scope_exactos.txt
+
+2026-11-02 20:32 · Correos indexados públicamente para snap.com (dominio de correo de la organización; NO es host en alcance, solo contexto)
+$ theHarvester -d snap.com -b duckduckgo,yahoo,baidu,mojeek,commoncrawl,otx,urlscan -l 500 -f th_snap   (ejecutado desde tecnica-08-correos/crudo/)
+-> 0 correos, 0 personas. 2 hosts (lens.snap.com, values.snap.com; fuera de alcance, no se usan). 38 IPs / 9 ASN mayoritariamente Google/Cloudflare; entre ellas 34.120.54.238, la misma IP pendiente de spectacles.com en T6 (solo contexto). Mojeek sin API key (modo scraping)
+siguiente: theHarvester no da patrón de correo con fuentes sin key → Hunter.io (web) sobre snapchat.com, snap.com y playcanvas.com
+
+2026-11-02 20:34 · Cruzar hosts de theHarvester (playcanvas.com) con T3
+$ jq -r '.hosts[]' tecnica-08-correos/crudo/th_playcanvas.json | cut -d: -f1 | grep -v '^\.' | sort -u ; comm -23 / comm -12 contra T3 y hosts_scope_exactos.txt
+-> 4 hosts únicos, 0 nuevos respecto a T3. 3 en alcance exacto: blog, developer, login (.playcanvas.com). api.playcanvas.com conocido en T3 pero no listado en alcance
+siguiente: Hunter.io (web) sobre snapchat.com, snap.com y playcanvas.com para obtener el patrón de correo
+
+2026-11-02 20:36 · Correos y patrón corporativo de snapchat.com en Hunter.io (web, plan gratuito, Domain Search; sin Email Verifier para no tocar los servidores de correo del objetivo)
+$ (web) hunter.io/search/snapchat.com
+-> 91 correos indexados: 44 personas (1 decision maker), 47 genéricos. Departamentos: Executive 2, Operations & Logistics 1, desconocido 41. Accept all: YES → servidor catch-all, no se puede confirmar la existencia de un buzón concreto. Empresa: Public Company, 1001–5000 empleados, Venice (California, EE. UU.). Signals: 19 señales / 70 eventos, correos nuevos indexados hasta hace 5 días. Parte local enmascarada, patrón no visible en plan gratuito
+siguiente: Hunter.io sobre snap.com y playcanvas.com
+
+2026-11-02 20:44 · Correos de snap.com y playcanvas.com en Hunter.io (web, plan gratuito, panel Discover)
+$ (web) hunter.io/discover?domains[]=snap.com · hunter.io/discover?domains[]=playcanvas.com
+-> snap.com: 106 correos (64 personas, 2 decision makers, 42 genéricos); primer departamento listado IT / Engineering (5); sede Santa Monica, California (EE. UU.); dominio de correo de la organización, NO host en alcance. Incoherencia de la fuente: Hunter sitúa snapchat.com en Venice y snap.com en Santa Monica.
+playcanvas.com: 6 correos (1 persona, 0 decision makers, 5 genéricos); Computer Games, 11–50 empleados, fundada en 2011, Londres (Reino Unido); coherente con support@playcanvas.com hallado por theHarvester.
+Ambos: parte local enmascarada, patrón no visible en plan gratuito; Accept all no visible en Discover
+siguiente: cerrar T8
+
+2026-11-02 20:45 · Cierre T8 Correos
+-> theHarvester (fuentes pasivas sin key): 0 correos personales en snapchat.com, playcanvas.com y snap.com; 1 genérico (support@playcanvas.com); 0 hosts nuevos respecto a T3.
+Hunter.io: snapchat.com 91 correos (44 personas / 47 genéricos, servidor catch-all); snap.com 106 (64 / 42); playcanvas.com 6 (1 / 5). La mayoría del correo corporativo indexado está en snap.com, no en snapchat.com. Patrón de correo no disponible en plan gratuito (parte local enmascarada). Salidas crudas y correos personales fuera del repo (.gitignore)
+siguiente: redactar mapa.md con las 8 técnicas
