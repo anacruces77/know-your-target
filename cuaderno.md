@@ -478,3 +478,17 @@ siguiente: cerrar T8
 -> theHarvester (fuentes pasivas sin key): 0 correos personales en snapchat.com, playcanvas.com y snap.com; 1 genérico (support@playcanvas.com); 0 hosts nuevos respecto a T3.
 Hunter.io: snapchat.com 91 correos (44 personas / 47 genéricos, servidor catch-all); snap.com 106 (64 / 42); playcanvas.com 6 (1 / 5). La mayoría del correo corporativo indexado está en snap.com, no en snapchat.com. Patrón de correo no disponible en plan gratuito (parte local enmascarada). Salidas crudas y correos personales fuera del repo (.gitignore)
 siguiente: redactar mapa.md con las 8 técnicas
+
+2026-11-02 20:51 · objetivo: snapchat.com, sc-core.net, sc-corp.net, playcanvas.com (consulta DS a la zona padre .com/.net, no toca el objetivo)
+$ dig <dominio> DS +noall +comments +answer (bucle) | tee dns_ds.txt
+-> status NOERROR sin registro DS en los 4 dominios: sin DNSSEC. Coincide con RDAP en snapchat.com, sc-core.net y sc-corp.net (17:25, 17:54). El "DNSSEC activado" de Netcraft en T4 es erróneo
+siguiente: resolver IPs de los hosts de la tabla de mapa.md
+
+2026-11-02 20:56 · objetivo: 31 hosts en alcance seleccionados para la tabla de mapa.md (consulta DNS pública a 8.8.8.8, no toca servidores del objetivo)
+$ dig +short A <host> @8.8.8.8 (bucle sobre tecnica-06-servicios/hosts_mapa.txt) | tee tecnica-06-servicios/ips_mapa.txt
+-> 29 con IP pública, 2 sin registro A (fortimanager y wifienroll.sc-core.net: sin IP pública), ninguna IP privada.
+   34.149.46.130 compartida por accounts, ads, business y web (mismo balanceador de Google Cloud que en T6).
+   35.190.16.123 compartida por 7 hosts internos de sc-corp.net (chat-gold, wiki, github, jira, gerrit, secproxy, identity-broker-prod): probable frontal común (hipótesis).
+   snappublisher.snapchat.com resuelve a 108.177.15.121, la misma IP que developer-portal.sc-corp.net.
+   engflow-cache-rbe-gcp-staging.sc-corp.net en 136.119.114.15, fuera del frontal común. Propietarios de las redes nuevas sin verificar
+siguiente: redactar mapa.md
