@@ -371,3 +371,11 @@ $ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) (inurl:login OR in
    · limitación del dork: no detecta logins servidos en "/"
    · captura: tecnica-07-dorks/capturas/t7_d4_resultados.png
 siguiente: D5 filetype:pdf/xlsx/docx/txt en los comodines
+
+2026-11-02 20:0X · T7 D5: documentos indexados en los comodines
+$ (Google, incógnito) (site:sc-corp.net OR site:sc-core.net) (filetype:pdf OR filetype:xlsx OR filetype:docx OR filetype:txt)
+-> 0 resultados
+   · sin documentos ofimáticos ni de texto indexados en *.sc-corp.net ni *.sc-core.net
+   · resumen D1–D5: la huella de los comodines en Google se limita a 2 hosts (engflow-cache-rbe-gcp-staging y stream), ambos ya en T3
+   · captura: tecnica-07-dorks/capturas/t7_d5_resultados.png
+siguiente: D6 site:accounts.snapchat.com
