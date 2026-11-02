@@ -339,3 +339,12 @@ $ cat > tecnica-07-dorks/dorks.txt << 'EOF' ... EOF   (commit 4d26365)
 -> 9 consultas (D1–D8b) sobre el alcance; método manual en navegador, solo página de resultados, sin abrir enlaces del objetivo
 siguiente: lanzar D1 (site:sc-corp.net) y anotar nº aproximado de resultados y hosts distintos
 
+### 2026-11-02 19:47 · T7 D1: indexación de *.sc-corp.net
+$ (Google, incógnito) site:sc-corp.net
+-> ~2 resultados (más 1 anuncio de Search Console, descartado)
+   · engflow-cache-rbe-gcp-staging.sc-corp.net: "Log in to EngFlow", login con Google de un entorno de staging (caché de compilación remota). Solo se anota que existe; no se abre.
+   · stream.sc-corp.net: StreamShark, contenido de vídeo embebido (Sticker Kit / Login Kit)
+   · ambos en alcance (comodín *.sc-corp.net)
+   · cruce con T3: <nuevos / ya conocidos>
+   · captura: tecnica-07-dorks/capturas/t7_d1_resultados.png
+siguiente: D2 site:sc-core.net
